@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from '../components/resuables/Card';
+import { useAtomValue } from 'jotai';
+import { cartItemsAtom } from '../store/cartAtoms';
 
 const products= [
     {
@@ -1801,6 +1803,10 @@ const products= [
   ]
 
 const Home: React.FC = () => {
+
+    const cartItems = useAtomValue(cartItemsAtom);
+
+    console.table(cartItems);
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-center mb-8">Welcome to Shopping Cart</h1>
