@@ -1,5 +1,6 @@
 
 import { useAtom } from 'jotai';
+import { toast } from 'react-toastify';
 import { cartItemsAtom, addToCart } from '../../store/cartAtoms';
 import type { Product } from '../../types/product';
 
@@ -15,11 +16,18 @@ function Card({ title, description, price, image, product }: CardProps) {
   const [cartItems, setCartItems] = useAtom(cartItemsAtom);
 
   const handleAddToCart = () => {
+    const existingItem = cartItems.find(item => item.product.id === product.id);
     setCartItems(addToCart(cartItems, product));
+    
+    if (existingItem) {
+      toast.success(`${product.title} quantity increased in cart!`);
+    } else {
+      toast.success(`${product.title} added to cart!`);
+    }
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
       <img
         src={image}
         alt={title}

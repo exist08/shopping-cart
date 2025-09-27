@@ -26,7 +26,7 @@ const Navigation: React.FC = () => {
             </Link>
           </div>
           
-          <div className="flex gap-x-4">
+          <div className="flex md:gap-x-4 gap-x-2">
             <Link to="/cart" className={`${navLinkClass('/cart')} flex items-center gap-2`}>
               <CartIcon />
               Cart
